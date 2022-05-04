@@ -25,3 +25,10 @@
   tags: redis
   roles:
     - redis
+
+- name: Setup User
+  hosts: user
+  become: true
+  tags: user
+  roles:
+    - user
