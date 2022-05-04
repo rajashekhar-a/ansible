@@ -18,7 +18,7 @@ CREATE() {
     return
   fi
 
-  sleep 5
+  sleep 60
 
   UPDATE_DNS_RECORDS $1
 }
