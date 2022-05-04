@@ -3,7 +3,7 @@
     src: mongodb.repo
     dest:  /etc/yum.repos.d/mongodb.repo
 
-- name: Instal Mongodb
+- name: Install Mongodb
   yum:
     name: mongodb-org
     state: present
@@ -19,3 +19,9 @@
     name: mongod
     state: restarted
     enabled: yes
+
+- name: Download Schema
+  include_role:
+    name: common
+    tasks_from: download
+
