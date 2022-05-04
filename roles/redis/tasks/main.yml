@@ -9,7 +9,7 @@
     enablerepo: remi
 
 - name: Update Redis Listen Add
-  repalce:
+  replace:
     path: /etc/redis.conf
     regexp: "127.0.0.1"
     replace: "0.0.0.0"
