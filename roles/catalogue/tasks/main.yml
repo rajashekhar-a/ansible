@@ -28,3 +28,16 @@
   community.general.npm:
     path: /home/roboshop/catalogue
 
+- name: Update systemd file
+  template:
+    src: systemd.service
+    dest: /etc/systemd/system/catalogue.service
+
+- name: Start catalogue service
+  systemd:
+    name: catalogue
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+
