@@ -1,0 +1,32 @@
+- name: Install nodejs
+  yum:
+    name: ["nodejs","make","gcc-c++"]
+    state: present
+
+- name: Add Roboshop app user
+  user:
+    name: roboshop
+
+- name: Downlad code
+  include_role:
+    name: common
+    tasks_from: download
+
+- name: Remove existing data
+  file:
+    path: /home/roboshop/catalogue
+    state: absent
+
+- name: Copy app code
+  copy:
+    src: /tmp/catalogue-main/
+    dest: /home/roboshop/catalogue
+    remote_src: true
+  become-user: roboshop
+
+- name: Install Nodejs Dependencies
+  community.general.npm:
+    path: /home/roboshop/catalogue
+  become_user: roboshop
+
+
