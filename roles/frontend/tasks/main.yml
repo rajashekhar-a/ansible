@@ -19,7 +19,7 @@
     path: /usr/share/nginx/html
     state: absent
 
--name: Copy the Htmldcos content
+-name: Copy the Htdcos content
  copy:
    src: /tmp/frontend-main/static/
    dest: /usr/share/nginx/html/
