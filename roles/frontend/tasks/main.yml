@@ -1,0 +1,9 @@
+- name: Install Nginx
+  yum:
+    name: nginx
+    state: latest
+
+- name: downlad code
+  include_role:
+    name: common
+    tasks_from: download
