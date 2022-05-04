@@ -3,7 +3,25 @@
     name: nginx
     state: latest
 
+- name: Start the Nginx service
+  ansible.builtin.systemd:
+    state: restarted
+    name: nginx
+    enabled: yes
+
 - name: downlad code
   include_role:
     name: common
     tasks_from: download
+
+- name: Remove old content
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
+-name: Copy the Htmldcos content
+ copy:
+   src: /tmp/frontend-main/static
+   dest: /usr/share/nginx/html
+   remote_src: yes
+
