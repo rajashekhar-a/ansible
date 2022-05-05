@@ -1,20 +1,20 @@
 - name: Setup Mysql Repo file
-  copy:
+  ansible.builtin.copy:
     src: mysql.repo
     dest: /etc/yum.repos.d/mysql.repo
 
 - name: Remove a mariadb package
-  yum:
+  ansible.builtin.yum:
     name: mariadb-lib
     state: absent
 
 - name: Install mysql
-  yum:
+  ansible.builtin.yum:
     name: mysql-community-server
     state: present
 
 - name: Start Mysql service
-  systemd:
+  ansible.builtin.systemd:
     name: mysql
     state: restarted
     enabled: yes
