@@ -39,3 +39,10 @@
   tags: cart
   roles:
     - cart
+
+- name: Setup Mysql
+  hosts: mysql
+  become: true
+  tags: mysql
+  roles:
+    - mysql
