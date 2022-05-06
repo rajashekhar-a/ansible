@@ -3,26 +3,12 @@
     name: ["nodejs","make","gcc-c++"]
     state: present
 
-- name: Add Roboshop app user
-  user:
-    name: roboshop
-
 - name: Downlad code
   include_role:
     name: common
     tasks_from: download
-
-- name: Remove existing data
-  file:
-    path: /home/roboshop/{{COMPONENT}}
-    state: absent
-
-- name: Copy app code
-  copy:
-    src: /tmp/{{COMPONENT}}-main/
-    dest: /home/roboshop/{{COMPONENT}}
-    remote_src: true
-  become_user: roboshop
+  vars:
+    APP_LOCATION: "/home/roboshop/{{COMPONENT}}"
 
 - name: Install Nodejs Dependencies
   community.general.npm:
