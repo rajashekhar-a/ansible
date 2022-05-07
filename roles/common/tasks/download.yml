@@ -1,7 +1,7 @@
 - name: Add Roboshop app user
   user:
     name: roboshop
-  when: APP_TYPE= "backend"
+  when: APP_TYPE == "backend"
 
 - name: Download {{COMPONENT}} code
   ansible.builtin.unarchive:
@@ -13,7 +13,7 @@
   file:
     path: "{{APP_LOCATION}}"
     state: absent
-  when: APP_TYPE= "backend" or APP_TYPE= "frontend"
+  when: APP_TYPE == "backend" or APP_TYPE == "frontend"
 
 - name: Copy app code
   copy:
@@ -21,13 +21,13 @@
     dest: "{{APP_LOCATION}}"
     remote_src: true
   become_user: "{{APP_USER}}"
-  when: APP_TYPE= "backend"
+  when: APP_TYPE == "backend"
 
 - name: Copy app code
   copy:
     src: /tmp/{{COMPONENT}}-main/
     dest: "{{APP_LOCATION}}"
     remote_src: true
-  when: APP_TYPE= "frontend"
+  when: APP_TYPE == "frontend"
 
 
