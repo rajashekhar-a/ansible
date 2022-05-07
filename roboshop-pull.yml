@@ -1,0 +1,5 @@
+- name: Setup Roboshop
+  hosts: localhost
+  become: yes
+  roles:
+    - "{{COMPONENT}}"
