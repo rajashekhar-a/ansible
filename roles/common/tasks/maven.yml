@@ -21,9 +21,16 @@
     APP_LOCATION: "/home/roboshop/{{COMPONENT}}"
     APP_USER: roboshop
 
-- name: Make Maven Package
-  shell: mvn clean package && mv target/shipping-1.0.jar shipping.jar
+- name: Make maven package
+  ansible.builtin.shell:
+    cmd: mvn clean package && mv target/shipping-1.0.jar shipping.jar
+    chdir: "/home/roboshop/{{COMPONENT}}"
   become_user: roboshop
+
+- name: Downlad Systemd
+  include_role:
+    name: common
+    tasks_from: systemd
 
 
 

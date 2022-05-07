@@ -15,14 +15,8 @@
   community.general.npm:
     path: /home/roboshop/{{COMPONENT}}
 
-- name: Update systemd file
-  template:
-    src: systemd.service
-    dest: /etc/systemd/system/{{COMPONENT}}.service
+- name: Downlad Systemd
+  include_role:
+    name: common
+    tasks_from: systemd
 
-- name: Start {{COMPONENT}} service
-  systemd:
-    name: "{{COMPONENT}}"
-    state: restarted
-    enabled: yes
-    daemon_reload: yes
