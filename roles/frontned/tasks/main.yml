@@ -1,1 +1,5 @@
-echo hello
+- name: Play1
+  tasks:
+    - name: Print Task1
+      ansible.builtin.debug:
+        msg: "Task1"
