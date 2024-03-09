@@ -2,3 +2,9 @@
   ansible.builtin.yum:
     name: nginx
     state: latest
+
+- name: Start the Nginx service
+  ansible.builtin.systemd_service:
+    state: started
+    name: nginx
+    enabled: true
