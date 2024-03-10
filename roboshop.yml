@@ -25,3 +25,17 @@
   become: true
   roles:
     - redis
+    -
+- name: Setup User
+  hosts: user
+  tags: user
+  become: true
+  roles:
+    - user
+
+- name: Setup Cart
+  hosts: cart
+  tags: cart
+  become: true
+  roles:
+    - cart
