@@ -1,6 +1,6 @@
 - name: Install redis repos
   ansible.builtin.yum:
-    name: http://rpms.remirepo.net/enterprise/remi-release-6.rpm
+    name: http://rpms.remirepo.net/enterprise/remi-release-8.rpm
     state: present
 
 - name: Install redis
