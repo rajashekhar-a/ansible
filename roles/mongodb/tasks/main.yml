@@ -14,6 +14,12 @@
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
 
+- name: Start mongodb service
+  ansible.builtin.systemd_service:
+    state: restarted
+    name: mongod
+    enabled: true
+
 - name: Download Schema
   ansible.builtin.include_role:
     name: common
@@ -21,14 +27,12 @@
 
 - name: Load Schema
   community.mongodb.mongodb_shell:
-    file: /tmp/mongodb-main/{{item}}.js
+    file: /tmp/mongodb-main/catalogue.js
     idempotent: yes
-  loop:
-    - catalogue
-    - users
 
-- name: Start mongodb service
-  ansible.builtin.systemd_service:
-    state: restarted
-    name: mongod
-    enabled: true
+- name: Load Schema
+  community.mongodb.mongodb_shell:
+    file: /tmp/mongodb-main/users.js
+    idempotent: yes
+
+
