@@ -1,26 +1,21 @@
-- name: Install epel and yum utils
-  ansible.builtin.yum:
-    name: [ "epel-release-7", "yum-utils" ]
-    state: present
-
-- name: Install redis repo
+- name: Install redis repos
   ansible.builtin.yum:
     name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
     state: present
 
-- name: Install Redis
+- name: Install redis
   ansible.builtin.yum:
     name: redis
     enablerepo: remi
 
-- name: Update Redis Config Listen address
+- name: Update Redis Listen address
   ansible.builtin.replace:
     path: /etc/redis.conf
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
 
-- name: Start the Redis
+- name: Start redis
   ansible.builtin.systemd_service:
-    state: started
     name: redis
-    enabled: true
+    state: restarted
+    enabled: yes
