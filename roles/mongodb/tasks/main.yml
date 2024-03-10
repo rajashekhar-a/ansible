@@ -25,10 +25,15 @@
     name: common
     tasks_from: download
 
+- name: Set executable path for MongoDB shell commands
+  set_fact:
+    mongodb_shell_path: "/usr/bin/mongo"
+
 - name: Load Schema
   community.mongodb.mongodb_shell:
-    file: /tmp/mongodb-main/{{item}}.js
+    file: /tmp/mongodb-main/{{ item }}.js
     idempotent: yes
+    mongodb_executable_path: "{{ mongodb_shell_path }}"
   loop:
     - catalogue
     - users
