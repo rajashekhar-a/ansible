@@ -25,7 +25,7 @@
   become: true
   roles:
     - redis
-    -
+
 - name: Setup User
   hosts: user
   tags: user
