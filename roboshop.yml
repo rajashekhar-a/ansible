@@ -18,3 +18,10 @@
   become: true
   roles:
     - catalogue
+
+- name: Setup Redis
+  hosts: redis
+  tags: redis
+  become: true
+  roles:
+    - redis
