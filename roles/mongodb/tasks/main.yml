@@ -8,7 +8,7 @@
     name: mongodb-org
     state: present
 
-- name: Update Mongodb l,isten address
+- name: Update Mongodb listen address
   ansible.builtin.replace:
     path: /etc/mongod.conf
     regexp: '127.0.0.1'
@@ -21,7 +21,7 @@
 
 - name: Load Schema
   community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/{{item}}.js"
+    file: /tmp/mongodb-main/{{item}}.js
     idempotent: yes
     loop:
       - catalogue
