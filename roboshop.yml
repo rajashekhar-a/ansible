@@ -1,5 +1,13 @@
 - name: Setup Frontend
   hosts: frontend
+  tags: frontend
   become: true
   roles:
     - frontend
+
+- name: Setup Mongodb
+  hosts: mongodb
+  tags: mongodb
+  become: true
+  roles:
+    - mongodb
