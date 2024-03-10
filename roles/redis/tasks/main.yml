@@ -1,9 +1,9 @@
 - name: Install epel and yum utils
   ansible.builtin.yum:
-    name: [ "epel-release", "yum-utils"]
+    name: [ "epel-release-7", "yum-utils" ]
     state: present
 
-- name: Install redis repos
+- name: Install redis repo
   ansible.builtin.yum:
     name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
     state: present
