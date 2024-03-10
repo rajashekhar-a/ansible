@@ -3,12 +3,6 @@
     name: nginx
     state: latest
 
-- name: Start the Nginx service
-  ansible.builtin.systemd_service:
-    state: started
-    name: nginx
-    enabled: true
-
 - name: Run tasks/other.yaml instead of 'main'
   ansible.builtin.include_role:
     name: common
@@ -25,4 +19,13 @@
     dest: /usr/share/nginx/html/
     remote_src: yes
 
+- name: Copy Roboshop conf file
+  ansible.builtin.copy:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf
 
+- name: Start the Nginx service
+  ansible.builtin.systemd_service:
+    state: started
+    name: nginx
+    enabled: true
