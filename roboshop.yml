@@ -11,3 +11,10 @@
   become: true
   roles:
     - mongodb
+
+- name: Setup Catalogue
+  hosts: catalogue
+  tags: catalogue
+  become: true
+  roles:
+    - catalogue
