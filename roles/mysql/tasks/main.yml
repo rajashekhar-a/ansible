@@ -4,12 +4,12 @@
     dest: /etc/yum.repos.d/mysql.repo
 
 - name: Remove a mariabd package
-  ansible.builtin.dnf:
+  ansible.builtin.yum:
     name: mariadb-libs
     state: absent
 
 - name: Install MySQL
-  ansible.builtin.dnf:
+  ansible.builtin.yum:
     name: mysql-community-server
     state: present
 
