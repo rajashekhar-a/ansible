@@ -1,21 +1,52 @@
-- name: Install redis repos
+#- name: Install redis repos
+#  ansible.builtin.yum:
+#    name: http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+#    state: present
+#
+#- name: Install redis
+#  ansible.builtin.yum:
+#    name: redis
+#    enablerepo: remi
+#
+#- name: Update Redis Listen address
+#  ansible.builtin.replace:
+#    path: /etc/redis.conf
+#    regexp: '127.0.0.1'
+#    replace: '0.0.0.0'
+#
+#- name: Start redis
+#  ansible.builtin.systemd_service:
+#    name: redis
+#    state: restarted
+#    enabled: yes
+- name: Install epel-release 
   ansible.builtin.yum:
-    name: http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    name: epel-release
     state: present
 
-- name: Install redis
+- name: Install yum-utils
   ansible.builtin.yum:
+    name: yum-utils
+    state: present
+
+- name: Install remi-release
+  ansible.builtin.shell:
+    cmd: dnf install -y https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+
+- name: Install Redis
+  ansible.builtin.dnf:
     name: redis
     enablerepo: remi
 
-- name: Update Redis Listen address
+- name: Update Redis Config Listen address
   ansible.builtin.replace:
     path: /etc/redis.conf
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
 
-- name: Start redis
-  ansible.builtin.systemd_service:
+- name: Start the Redis
+  ansible.builtin.systemd:
     name: redis
-    state: restarted
-    enabled: yes
+    state: started
+    enabled: true
+
