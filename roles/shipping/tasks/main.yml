@@ -17,7 +17,6 @@
     path: /home/roboshop/{{COMPONENT}}
     state: absent
 
-
 - name: Copy the App Code
   ansible.builtin.copy:
     src: /tmp/{{COMPONENT}}-main/
@@ -25,12 +24,21 @@
     remote_src: true
   become_user: roboshop
 
-
 - name: Make maven package
   ansible.builtin.shell:
     cmd: mvn clean package && mv target/shipping-1.0.jar shipping.jar
     chdir: "/home/roboshop/{{COMPONENT}}"
   become_user: roboshop
 
+- name: Update systemd file
+  ansible.builtin.copy:
+    src: systemd.service
+    dest: /etc/systemd/system/{{COMPONENT}}.service
 
+- name: Start {{COMPONENT}} Service
+  ansible.builtin.systemd_service:
+    name: "{{COMPONENT}}"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
 
