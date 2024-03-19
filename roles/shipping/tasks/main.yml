@@ -12,15 +12,25 @@
     name: common
     tasks_from: download
 
+- name: Remove Old content
+  ansible.builtin.file:
+    path: /home/roboshop/{{COMPONENT}}
+    state: absent
 
-- name: MVN Clean Package
-  ansible.builtin.shell: mvn clean package
+
+- name: Copy the App Code
+  ansible.builtin.copy:
+    src: /tmp/{{COMPONENT}}-main/
+    dest: /home/roboshop/{{COMPONENT}}
+    remote_src: true
   become_user: roboshop
 
 
-- name: Copy the Content
-  ansible.builtin.copy:
-    src: /shipping/target/shipping-1.0.jar
-    dest: /shipping/shipping.jar
-    become_user: roboshop
+- name: Make maven package
+  ansible.builtin.shell:
+    cmd: mvn clean package && mv target/shipping-1.0.jar shipping.jar
+    chdir: "/home/roboshop/{{COMPONENT}}"
+  become_user: roboshop
+
+
 
