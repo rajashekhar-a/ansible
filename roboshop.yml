@@ -46,3 +46,10 @@
   become: true
   roles:
     - mysql
+
+- name: Setup Shipping
+  hosts: shipping
+  tags: shipping
+  become: true
+  roles:
+    - shipping
