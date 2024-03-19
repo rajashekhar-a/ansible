@@ -17,11 +17,12 @@
     src: /tmp/shipping-main
     dest: /tmp/shipping
     become_user: roboshop
-    remote_src: yes
+    chdir: "/home/roboshop/{{COMPONENT}}"
 
 - name: MVN Clean Package
   ansible.builtin.shell: mvn clean package
   become_user: roboshop
+  chdir: shipping
 
 - name: Copy the Content
   ansible.builtin.copy:
