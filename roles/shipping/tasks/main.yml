@@ -12,12 +12,6 @@
     name: common
     tasks_from: download
 
-- name: Copy the Content
-  ansible.builtin.copy:
-    src: /tmp/shipping-main
-    dest: /tmp/shipping
-    become_user: roboshop
-    chdir: "/home/roboshop/{{COMPONENT}}"
 
 - name: MVN Clean Package
   ansible.builtin.shell: mvn clean package
