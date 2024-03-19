@@ -16,7 +16,7 @@
 - name: MVN Clean Package
   ansible.builtin.shell: mvn clean package
   become_user: roboshop
-  chdir: shipping
+
 
 - name: Copy the Content
   ansible.builtin.copy:
