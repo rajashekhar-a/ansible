@@ -53,3 +53,17 @@
   become: true
   roles:
     - shipping
+
+- name: Setup Rabbitmq
+  hosts: rabbitmq
+  tags: rabbitmq
+  become: true
+  roles:
+    - rabbitmq
+
+- name: Setup Payment
+  hosts: payment
+  tags: payment
+  become: true
+  roles:
+    - payment
