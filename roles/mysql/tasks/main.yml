@@ -1,12 +1,12 @@
+- name: Disable MySQL
+  ansible.builtin.dnf:
+    name: mysql = 8
+    state: absent
+
 - name: Setup MySQL repo
   ansible.builtin.copy:
     src: mysql.repo
     dest: /etc/yum.repos.d/mysql.repo
-
-- name: Disable MySQL module
-  ansible.builtin.dnf:
-    name: mysql
-    state: absent
 
 - name: Install MySQL
   ansible.builtin.dnf:
