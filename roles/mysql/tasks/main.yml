@@ -3,14 +3,14 @@
     src: mysql.repo
     dest: /etc/yum.repos.d/mysql.repo
 
-- name: Remove a mariabd package
-  ansible.builtin.yum:
-    name: mariadb-libs
+- name: Disable MySQL module
+  ansible.builtin.dnf:
+    name: mysql
     state: absent
 
 - name: Install MySQL
-  ansible.builtin.yum:
-    name: mysql-community-server>=5.7
+  ansible.builtin.dnf:
+    name: mysql-community-server
     state: present
 
 - name: Start MySQL service
