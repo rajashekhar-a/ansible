@@ -28,11 +28,6 @@
   become_user: roboshop
 
 - name: Install Python Dependencies
-  ansible.builtin.shell:
-    cmd: mvn clean package && mv target/shipping-1.0.jar shipping.jar
-    chdir: "/home/roboshop/{{COMPONENT}}"
-
-- name: Install Python Dependencies
   pip:
     requirements: "/home/roboshop/{{COMPONENT}}/requirements.txt"
     executable: pip3
