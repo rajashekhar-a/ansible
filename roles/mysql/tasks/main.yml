@@ -1,6 +1,6 @@
 - name: Disable MySQL
   ansible.builtin.dnf:
-    name: mysql = 8
+    name: mysql
     state: absent
 
 - name: Setup MySQL repo
@@ -8,7 +8,11 @@
     src: mysql.repo
     dest: /etc/yum.repos.d/mysql.repo
 
-- name: Install MySQL
+- name: Import MySQL GPG key
+  ansible.builtin.rpm_key:
+    key: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+- name: Install MySQL 5.7
   ansible.builtin.dnf:
     name: mysql-community-server
     state: present
