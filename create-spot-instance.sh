@@ -1,0 +1,2 @@
+#!/bin/bash
+aws ec2 run-instances --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=sample}]" --launch-template lt-062ed7701b26d7bd7 "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=sample}]"
