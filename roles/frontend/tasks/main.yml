@@ -16,7 +16,7 @@
 
 - name: Download Frontend Component
   ansible.builtin.unarchive:
-    src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
+    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip"
     dest: /tmp
     remote_src: yes
 
