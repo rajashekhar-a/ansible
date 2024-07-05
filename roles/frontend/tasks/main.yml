@@ -3,12 +3,6 @@
     name: nginx
     state: latest
 
-- name: Start Nginx Service
-  ansible.builtin.systemd_service:
-    state: started
-    name: nginx
-    enabled: true
-
 - name: Remove Old content
   ansible.builtin.file:
     path: /usr/share/nginx/html/*
@@ -19,3 +13,14 @@
     src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
     dest: /tmp
     remote_src: yes
+
+- name: Copy App Code
+  ansible.builtin.copy:
+    src: /usr/share/nginx/html
+    dest: /tmp/frontend-main
+
+- name: Start Nginx Service
+  ansible.builtin.systemd_service:
+    state: started
+    name: nginx
+    enabled: true
