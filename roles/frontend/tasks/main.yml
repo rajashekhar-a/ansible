@@ -3,25 +3,26 @@
     name: nginx
     state: latest
 
-- name: Remove Old content
-  ansible.builtin.file:
-    path: /usr/share/nginx/html/*
-    state: absent
-
-- name: Download Frontend Code
+- name: Download {{COMPONENT}} Code
   ansible.builtin.unarchive:
     src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
     dest: /tmp
     remote_src: yes
 
+- name: Remove existing code
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/
+    state: absent
+
+
 - name: Copy App Code
-  ansible.builtin.copy:
-    src: /usr/share/nginx/html
-    dest: /tmp/frontend-main
+  copy:
+    src: /tmp/{{COMPONENT}}-main/
+    dest: /usr/share/nginx/html/
     remote_src: true
 
 - name: Start Nginx Service
-  ansible.builtin.systemd_service:
-    state: started
+  ansible.builtin.systemd:
+    state: restarted
     name: nginx
-    enabled: true
+    enabled: yes
