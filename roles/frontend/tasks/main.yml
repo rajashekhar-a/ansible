@@ -3,11 +3,6 @@
     name: nginx
     state: latest
 
-- name: Start Nginx Service
-  ansible.builtin.systemd:
-    state: restarted
-    name: nginx
-    enabled: yes
 
 - name: Remove Old Content
   ansible.builtin.file:
@@ -20,3 +15,14 @@
     dest: /tmp
     remote_src: yes
 
+- name: Copy Htdocs content
+  ansible.builtin.copy:
+    src: /tmp
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
+- name: Start Nginx Service
+  ansible.builtin.systemd:
+    state: restarted
+    name: nginx
+    enabled: yes
