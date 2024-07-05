@@ -17,7 +17,7 @@
 
 - name: Copy App Code
   copy:
-    src: /tmp/{{COMPONENT}}-main/
+    src: /tmp/frontend-main/
     dest: /usr/share/nginx/html/
     remote_src: true
 
