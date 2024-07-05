@@ -8,3 +8,8 @@
     state: restarted
     name: nginx
     enabled: yes
+
+- name: Remove Old Content
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/
+    state: absent
