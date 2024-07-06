@@ -28,4 +28,3 @@
 - name: Install Nodejs dependencies
   community.general.npm:
     path: /app
-  become_user: roboshop
