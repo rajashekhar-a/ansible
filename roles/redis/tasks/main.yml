@@ -4,9 +4,10 @@
     dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
 
 - name: Import Remi GPG key
-  ansible.builtin.rpm_key:
-    state: present
-    key: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+  ansible.builtin.command:
+    args: rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+    creates: /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+
 
 - name: Install Remi Repo
   ansible.builtin.yum:
