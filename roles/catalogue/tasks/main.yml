@@ -24,3 +24,8 @@
     src: https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
     dest: /app
     remote_src: yes
+
+- name: Install Nodejs dependencies
+  community.general.npm:
+    path: /app
+  become_user: roboshop
