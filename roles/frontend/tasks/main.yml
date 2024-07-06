@@ -17,8 +17,8 @@
 
 - name: Copy Htdocs content
   ansible.builtin.copy:
-    src: /tmp
-    dest: /usr/share/nginx/html
+    src: /tmp/
+    dest: /usr/share/nginx/html/
     remote_src: yes
 
 - name: Start Nginx Service
