@@ -5,7 +5,7 @@
 
 - name: Import Remi GPG key
   ansible.builtin.command:
-    args: rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+    cmd: rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
     creates: /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
 
 
