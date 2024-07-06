@@ -1,7 +1,12 @@
-- name: Install Redis Repo
-  ansible.builtin.yum:
-    name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+- name: Import Remi GPG key
+  ansible.builtin.rpm_key:
     state: present
+    key: https://rpms.remirepo.net/RPM-GPG-KEY-remi
+
+- name: Install Remi Repo
+  ansible.builtin.yum:
+     name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+     state: present
 
 - name: Enable Redis
   ansible.builtin.shell:
