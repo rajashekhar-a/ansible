@@ -13,8 +13,8 @@
     - mongodb
 
 - name: Setup Catalogue
-  hosts: mongodb
+  hosts: catalogue
   become: true
-  tags: mongodb
+  tags: catalogue
   roles:
     - catalogue
