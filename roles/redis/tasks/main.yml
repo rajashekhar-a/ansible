@@ -1,24 +1,9 @@
-- name: Download Remi GPG key
-  ansible.builtin.get_url:
-    url: https://rpms.remirepo.net/RPM-GPG-KEY-remi
-    dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
-
-- name: Import Remi GPG key
-  ansible.builtin.command:
-    cmd: rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
-    creates: /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
-
-
-- name: Install Remi Repo
-  ansible.builtin.yum:
+- name: Install redis repos
+  yum:
     name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
     state: present
 
-- name: Enable Redis
-  ansible.builtin.shell:
-    cmd: dnf module enable redis:remi-6.2 -y
-
-- name: Install Redis
-  ansible.builtin.yum:
+- name: Install redis
+  yum:
     name: redis
-    state: present
+    enablerepo: remi
