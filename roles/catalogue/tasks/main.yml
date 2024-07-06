@@ -28,3 +28,25 @@
 - name: Install Nodejs dependencies
   community.general.npm:
     path: /app
+
+- name: Update systemd file
+  template:
+    src: systemd.service
+    dest: /etc/systemd/system/catalogue.service
+
+- name: Start Catalogue Service
+  systemd:
+    name: catalogue
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+- name: Copy Mongodb repo File
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install MongoDB
+  ansible.builtin.dnf:
+    name: mongodb-org-shell
+    state: latest
