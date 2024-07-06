@@ -1,0 +1,13 @@
+- name: Install Redis Repo
+  ansible.builtin.dnf:
+    name: 'https://rpms.remirepo.net/enterprise/remi-release-8.rpm'
+    state: present
+
+- name: Enable Redis
+  ansible.builtin.shell:
+    cmd: dnf module enable redis:remi-6.2 -y
+
+- name: Install Redis
+  ansible.builtin.dnf:
+    name: redis
+    state: present
