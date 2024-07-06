@@ -9,3 +9,8 @@
 - name: Install Nodejs Package
   ansible.builtin.shell:
     cmd: dnf install nodejs -y
+
+- name: Add Roboshop User
+  ansible.builtin.user:
+    name: roboshop
+    group: /app
