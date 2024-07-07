@@ -10,3 +10,9 @@
 - name: Install MySQL
   ansible.builtin.shell:
     cmd: dnf install mysql-community-server -y
+
+- name: Start MySQL service
+  ansible.builtin.systemd:
+    name: mysqld
+    state: started
+    enabled: yes
