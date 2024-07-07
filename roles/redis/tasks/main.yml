@@ -19,3 +19,10 @@
     - /etc/redis.conf
     - /etc/redis/redis.conf
 
+- name: Start redis
+  ansible.builtin.systemd_service:
+    name: redis
+    state: started
+    enabled: true
+
+
