@@ -21,6 +21,7 @@
   ansible.builtin.shell: grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}'
   register: DEFAULT_PASSWORD
 
-- name: Print DEFAULT_PASSWORD
-  ansible.builtin.debug:
-     msg: "{{DEFAULT_PASSWORD.stdout}}"
+- name: Check the new password is working
+  ansible.builtin.shell: echo 'show databases;' | mysql -uroot -p"{{NEW_PASSWORD}}"
+  register: check_new_password
+  ignore_errors: yes
