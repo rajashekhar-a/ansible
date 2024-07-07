@@ -12,9 +12,8 @@
 
 - name: Update Redis Listen Address
   replace:
-    file: /etc/{{item}}.conf
+    file: /etc/"{{item}}".conf
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
   loop:
     - redis
-    - redis/redis
