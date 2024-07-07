@@ -20,3 +20,7 @@
 - name: Grab default password
   ansible.builtin.shell: grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}'
   register: DEFAULT_PASSWORD
+
+- name: Print DEFAULT_PASSWORD
+  ansible.builtin.debug:
+     msg: "{{DEFAULT_PASSWORD.stdout}}"
