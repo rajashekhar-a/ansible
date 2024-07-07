@@ -1,14 +1,12 @@
-- name: Disable MysQL Version
-  ansible.builtin.dnf:
-    name: mysql
-    state: absent
+- name: Disable MySQl Default Version
+  ansible.builtin.shell:
+    cmd: dnf module disable mysql -y
 
 - name: Copy Mongodb repo File
   ansible.builtin.copy:
     src: mysql.repo
     dest: /etc/yum.repos.d/mysql.repo
 
-- name: Install MySQl
-  ansible.builtin.dnf:
-    name: mysql-community-server
-    state: present
+- name: Install MySQL
+  ansible.builtin.shell:
+    cmd: dnf install mysql-community-server -y
