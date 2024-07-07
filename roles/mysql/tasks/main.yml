@@ -1,8 +1,7 @@
 - name: Disable MysQL Version
   ansible.builtin.dnf:
     name: mysql
-    state: latest
-    disable_excludes: all
+    state: absent
 
 - name: Copy Mongodb repo File
   ansible.builtin.copy:
