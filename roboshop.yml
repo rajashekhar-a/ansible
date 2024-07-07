@@ -32,3 +32,10 @@
   tags: user
   roles:
     - user
+
+- name: Setup Cart
+  hosts: cart
+  become: true
+  tags: cart
+  roles:
+    - cart

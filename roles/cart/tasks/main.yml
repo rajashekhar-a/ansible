@@ -1,0 +1,42 @@
+- name: Disable default nodejs
+  ansible.builtin.shell:
+    cmd: dnf module disable nodejs -y
+
+- name: Enable nodejs version18
+  ansible.builtin.shell:
+    cmd: dnf module enable nodejs:18 -y
+
+- name: Install Nodejs Package
+  ansible.builtin.shell:
+    cmd: dnf install nodejs -y
+
+- name: Add Roboshop User
+  ansible.builtin.user:
+    name: roboshop
+
+- name: Create Directory App
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: Download App Code
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/cart.zip
+    dest: /app
+    remote_src: yes
+
+- name: Install Nodejs dependencies
+  community.general.npm:
+    path: /app
+
+- name: Update systemd file
+  template:
+    src: systemd.service
+    dest: /etc/systemd/system/cart.service
+
+- name: Start Cart Service
+  systemd:
+    name: cart
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
