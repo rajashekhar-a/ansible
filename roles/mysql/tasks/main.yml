@@ -1,0 +1,15 @@
+- name: Disable MysQL Version
+  ansible.builtin.dnf:
+    name: mysql
+    state: latest
+    disable_excludes: all
+
+- name: Copy Mongodb repo File
+  ansible.builtin.copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+- name: Install MySQl
+  ansible.builtin.dnf:
+    name: mysql-community-server
+    state: present
