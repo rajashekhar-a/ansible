@@ -28,14 +28,23 @@
     src: systemd.service
     dest: /etc/systemd/system/shipping.service
 
+
+- name: Install MySQL
+  ansible.builtin.dnf:
+    name: mysql
+    state: present
+
+- name: Load Schema
+  community.mysql.mysql_db:
+    state: present
+    name: all
+    target: /app/schema/shipping.sql
+    login_user: root
+    login_password: "{{NEW_PASSWORD}}"
+
 - name: Start Shipping Service
   systemd:
     name: shipping
     state: restarted
     enabled: yes
     daemon_reload: yes
-
-- name: Install MySQL
-  ansible.builtin.dnf:
-    name: mysql
-    state: present
