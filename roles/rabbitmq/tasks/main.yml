@@ -1,0 +1,27 @@
+- name: Setup Repos for RabbitmQ
+  shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+
+- name: Install RabbitMQ
+  yum:
+    name:
+      - curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+      - rabbitmq-server
+    state: present
+
+- name: Start RabbitMQ service
+  systemd:
+    name: rabbitmq-server
+    state: started
+    enabled: yes
+
+- name: Setup Roboshop User
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
+    password: roboshop123
+    tags: administrator
+    permissions:
+      - vhost: /
+        configure_priv: .*
+        read_priv: .*
+        write_priv: .*
+    state: present
