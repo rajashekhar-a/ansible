@@ -2,11 +2,8 @@
   shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 
 - name: Install RabbitMQ
-  yum:
-    name:
-      - curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
-      - rabbitmq-server
-    state: present
+  ansible.builtin.shell:
+    cmd: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash  && rabbitmq-server
 
 - name: Start RabbitMQ service
   systemd:
