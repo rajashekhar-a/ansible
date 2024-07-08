@@ -3,7 +3,6 @@
     name: nginx
     state: latest
 
-
 - name: Remove Old Content
   ansible.builtin.file:
     path: /usr/share/nginx/html/
