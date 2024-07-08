@@ -36,7 +36,7 @@
 
 - name: Run MySQL script
   ansible.builtin.command:
-    cmd: mysql -hmysql-{{ENV}}.roboshop.internal  -uroot -p{{NEW_PASSWORD}} < /app/schema/shipping.sql
+    cmd: mysql -uroot -p{{NEW_PASSWORD}} < /app/schema/shipping.sql
 
 
 - name: Start Shipping Service
