@@ -9,7 +9,8 @@
 
 - name: Install MySQL
   ansible.builtin.shell:
-    cmd: dnf install mysql-community-server -y
+    cmd: dnf install mysql-community-server -y && MySQL-python && python36-PyMySQL
+
 
 - name: Start MySQL service
   ansible.builtin.systemd:
