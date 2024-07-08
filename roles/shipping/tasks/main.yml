@@ -31,10 +31,7 @@
 
 - name: Install MySQL
   ansible.builtin.dnf:
-    name:
-      - mysql
-      - PyMySQL
-      - MySQL-python
+    name: mysql
     state: present
 
 - name: Load Schema
