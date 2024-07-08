@@ -17,3 +17,20 @@
     src: https://roboshop-artifacts.s3.amazonaws.com/shipping.zip
     dest: /app
     remote_src: yes
+
+- name: Make maven package
+  ansible.builtin.shell:
+    cmd: mvn clean package && mv target/shipping-1.0.jar shipping.jar
+    chdir: /app
+
+- name: Update systemd file
+  template:
+    src: systemd.service
+    dest: /etc/systemd/system/shipping.service
+
+- name: Start Shipping Service
+  systemd:
+    name: shipping
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
