@@ -34,13 +34,10 @@
     name: mysql
     state: present
 
-- name: Load Schema
-  community.mysql.mysql_db:
-    state: present
-    name: all
-    target: /app/schema/shipping.sql
-    login_user: root
-    login_password: "{{NEW_PASSWORD}}"
+- name: Run MySQL script
+  ansible.builtin.command:
+    cmd: mysql -hmysql-{{ENV}}.roboshop.internal  -uroot -p{{NEW_PASSWORD}} < /app/schema/shipping.sql
+
 
 - name: Start Shipping Service
   systemd:
