@@ -34,3 +34,8 @@
     state: restarted
     enabled: yes
     daemon_reload: yes
+
+- name: Install MySQL
+  ansible.builtin.dnf:
+    name: mysql
+    state: present
