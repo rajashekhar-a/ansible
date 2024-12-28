@@ -13,6 +13,7 @@
 - name: Add Roboshop User
   ansible.builtin.user:
     name: roboshop
+    create_home: yes
 
 - name: Download App Code
   ansible.builtin.unarchive:
