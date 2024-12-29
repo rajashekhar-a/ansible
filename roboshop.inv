@@ -5,7 +5,7 @@ frontend-dev.roboshop.internal
 mongodb-dev.roboshop.internal
 
 [mongodb:vars]
-mongodb-dev.roboshop.internal
+mongodb=mongodb-dev.roboshop.internal
 
 [catalogue]
 catalogue-dev.roboshop.internal
