@@ -54,5 +54,4 @@
 
 - name: Load schema
   ansible.builtin.shell:
-    cmd: mongo --host {{mongodb}} </app/schema/catalogue.js
-  register: mongo_output
+    cmd: mongo --host mongodb-{{ENV}}.roboshop.internal </app/schema/catalogue.js
