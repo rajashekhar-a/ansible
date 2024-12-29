@@ -54,5 +54,5 @@
 
 - name: Load schema
   ansible.builtin.shell:
-    cmd: mongo --host {{ mongodb }} </app/schema/catalogue.js
+    cmd: mongo --host {{mongodb}} </app/schema/catalogue.js
   register: mongo_output
