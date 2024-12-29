@@ -1,2 +1,4 @@
 NEW_PASSWORD: RoboShop@1
 COMPONENT: shipping
+MYSQL: mysql-{{ENV}}.roboshop.internal
+USER: root
