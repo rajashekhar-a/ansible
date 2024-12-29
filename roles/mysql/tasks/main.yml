@@ -8,11 +8,12 @@
     dest: /etc/yum.repos.d/mysql.repo
 
 - name: Install MySQL
+  ansible.builtin.shell:
+    cmd: dnf install mysql-community-server -y
+
+- name: Install MySQL
   ansible.builtin.dnf:
-    name:
-      - mysql-community-server
-      - PyMySQL
-      - MySQL-python
+    name: mysql
     state: present
 
 
