@@ -6,8 +6,9 @@
     cmd: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh
 
 - name: Install RabbitMQ
-  ansible.builtin.shell:
-    cmd: dnf install rabbitmq-server -y
+  ansible.builtin.dnf:
+    name: rabbitmq-server
+    state: present
 
 - name: Start RabbitMQ service
   systemd:
