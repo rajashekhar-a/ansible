@@ -11,6 +11,11 @@
   ansible.builtin.shell:
     cmd: dnf install mysql-community-server -y
 
+- name: Install Nginx
+  ansible.builtin.dnf:
+    name: python3-mysqlclient
+    state: latest
+
 
 - name: Start MySQL service
   ansible.builtin.systemd:
