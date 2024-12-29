@@ -28,6 +28,11 @@
     src: systemd.service
     dest: /etc/systemd/system/shipping.service
 
+- name: Install MySQL
+  ansible.builtin.dnf:
+    name: mysql
+    state: present
+
 
 - name: Start Shipping Service
   systemd:
