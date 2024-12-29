@@ -1,12 +1,8 @@
 - name: Setup Repos for RabbitmQ
-  shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+  shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 
 - name: Configure Yum Repos Rabbitmq
-  ansible.builtin.yum:
-    name:
-      - https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh
-      - rabbitmq-server
-    state: present
+  shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
 - name: Install RabbitMQ
   ansible.builtin.dnf:
