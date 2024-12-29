@@ -29,16 +29,6 @@
     dest: /etc/systemd/system/shipping.service
 
 
-- name: Install MySQL
-  ansible.builtin.dnf:
-    name: mysql
-    state: present
-
-- name: Run MySQL script
-  ansible.builtin.command:
-    cmd: mysql -h {{MYSQL}} -u{{USER}} -p{{NEW_PASSWORD}} < /app/schema/shipping.sql
-
-
 - name: Start Shipping Service
   systemd:
     name: shipping

@@ -36,3 +36,18 @@
 - name: Reset Password
   ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{DEFAULT_PASSWORD.stdout}}" </tmp/pass.sql
   when: check_new_password.failed
+
+- name: Download Schema
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/shipping.zip
+    dest: /app
+    remote_src: yes
+
+
+- name: Load Schema
+  community.mysql.mysql_db:
+     state: import
+     name: all
+     target: /app/schema/shipping.sql
+     login_user: root
+     login_password: "{{NEW_PASSWORD}}"
