@@ -25,6 +25,21 @@
     dest: /app
     remote_src: yes
 
+- name: Download App Component
+  ansible.builtin.get_url:
+    url: http://172.31.35.162:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+    dest: /tmp/{{COMPONENT}}.zip
+    url_username: "{{NEXUS_USER}}"
+    url_password: "{{NEXUS_PASS}}"
+    when: APP_VERSION != ""
+
+- name: Extract App Code
+  ansible.builtin.unarchive:
+    src: /tmp/{{COMPONENT}}.zip
+    dest: /app
+    remote_src: yes
+    when: APP_VERSION != ""
+
 - name: Install Nodejs dependencies
   community.general.npm:
     path: /app
