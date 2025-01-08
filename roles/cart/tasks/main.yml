@@ -40,6 +40,7 @@
     dest: /app
     remote_src: yes
     when: APP_VERSION != ""
+    ignore_errors: yes
 
 - name: Install Nodejs dependencies
   community.general.npm:
