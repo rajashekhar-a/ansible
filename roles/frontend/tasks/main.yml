@@ -20,14 +20,14 @@
     dest: /tmp/{{COMPONENT}}.zip
     url_username: "{{NEXUS_USER}}"
     url_password: "{{NEXUS_PASS}}"
-    when: APP_VERSION != ""
+  when: APP_VERSION != ""
 
 - name: Extract App Code
   ansible.builtin.unarchive:
     src: /tmp/{{COMPONENT}}.zip
     dest: /app
     remote_src: yes
-    when: APP_VERSION != ""
+  when: APP_VERSION != ""
 
 - name: Copy Htdocs content
   ansible.builtin.copy:
@@ -45,3 +45,7 @@
     state: restarted
     name: nginx
     enabled: yes
+
+- name: Setup Node Exporter
+  ansible.builtin.include_role:
+    name: node_exporter
