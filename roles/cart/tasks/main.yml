@@ -57,3 +57,7 @@
     state: restarted
     enabled: yes
     daemon_reload: yes
+
+- name: Setup Node Exporter
+  ansible.builtin.include_role:
+    name: node_exporter

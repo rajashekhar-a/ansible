@@ -1,0 +1,8 @@
+- name: Copy script to the target
+  ansible.builtin.copy:
+    src: node_exporter.sh
+    dest: /tmp/node_exporter.sh
+    mode: '0755'
+
+- name: Install Node Exporter
+  ansible.builtin.command: /tmp/node_exporter.sh
